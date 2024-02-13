@@ -1,4 +1,4 @@
-import ObjectId
+"""import ObjectId
 class User(object):
 
     Users = []
@@ -38,3 +38,4 @@ class User(object):
 
         # implement authentication methods from API
         pass
+"""
