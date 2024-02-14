@@ -4,9 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 # implement methods + logic in controller class for CRUD
 # Create your models here.
 
-class ObjectId:
-
-    def 
+#
 class User(models.Model):
     _userId = models.IntegerField()
     _username = models.CharField(max_length=100)
@@ -33,6 +31,7 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) # List of Type Product
     _Products = models.CharField(max_length=255)
     _totalAmount = models.FloatField() 
+    _subtotal = models.FloatField()
 
 class ShoppingCart(models.Model): 
     _user: User 
