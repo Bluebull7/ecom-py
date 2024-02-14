@@ -1,0 +1,120 @@
+WITH FACTORY METHOD ABSTRACTION
+
+@startuml
+
+class User {
+  - userId: ObjectId
+  - username: String
+  - email: String
+  - password: String
+  + register(): void
+  + login(): void
+  + logout(): void
+}
+
+class Product {
+  - productId: ObjectId
+  - name: String
+  - description: String
+  - price: float
+  + createProduct(): void
+  + updateProduct(): void
+  + deleteProduct(): void
+}
+
+class Order {
+  - orderId: ObjectId
+  - user: User
+  - products: List<Product>
+  - totalAmount: float
+  + addProduct(product: Product): void
+  + removeProduct(product: Product): void
+  + calculateTotalAmount(): void
+  + placeOrder(): void
+}
+
+class ShoppingCart {
+  - user: User
+  - items: List<OrderItem>
+  + addItem(item: OrderItem): void
+  + removeItem(item: OrderItem): void
+  + viewCart(): List<OrderItem>
+}
+
+class Category {
+  - categoryId: ObjectId
+  - name: String
+  + getCategoryProducts(): List<Product>
+  + createCategory(): void
+  + updateCategory(): void
+  + deleteCategory(): void
+}
+
+class OrderItem {
+  - orderItemId: ObjectId
+  - product: Product
+  - quantity: int
+  - subtotal: float
+  + getOrderItemDetails(): String
+  + calculateSubtotal(): void
+  + updateQuantity(quantity: int): void
+}
+
+class UserController {
+  - userService: UserService
+  + registerUser(user: User): void
+  + loginUser(username: String, password: String): void
+  + logoutUser(): void
+}
+
+class ProductService {
+  - productService: ProductService
+  + createProduct(product: Product): void
+  + updateProduct(product: Product): void
+  + deleteProduct(productId: ObjectId): void
+}
+
+class OrderService {
+  - orderService: OrderService
+  + placeOrder(order: Order): void
+  + getOrderDetails(orderId: ObjectId): Order
+}
+
+class ShoppingCartService {
+  - shoppingCartService: ShoppingCartService
+  + addItemToCart(user: User, product: Product): void
+  + removeItemFromCart(user: User, product: Product): void
+  + viewCart(user: User): List<OrderItem>
+}
+
+class CategoryService {
+  - categoryService: CategoryService
+  + createCategory(category: Category): void
+  + updateCategory(category: Category): void
+  + deleteCategory(categoryId: ObjectId): void
+}
+
+class View {
+  + renderHomePage(): void
+  + renderProductList(products: List<Product>): void
+  + renderCategoryList(categories: List<Category>): void
+  + renderOrderDetails(order: Order): void
+}
+
+class TemplateEngine {
+}
+
+UserController --> UserService
+ProductController --> ProductService
+OrderController --> OrderService
+ShoppingCartController --> ShoppingCartService
+CategoryController --> CategoryService
+
+ShoppingCart --> OrderItem
+User --> Order
+ShoppingCart --> User
+Order --> Product
+
+View --> TemplateEngine
+
+@enduml

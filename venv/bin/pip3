@@ -1,4 +1,4 @@
-#!/home/lanceh/ecom-py/venv/bin/python3
+#!/home/lanceh/ecom-py/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
